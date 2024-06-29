@@ -40,6 +40,16 @@ h2 {
     color: #fff;
 }
 
+section h2{
+    cursor: pointer;
+}
+
+section.collapsed {
+    min-height: 152px !important;
+    overflow: hidden;
+    height: 155px;
+}
+
 p {
     line-height: 1.6em;
     color: #eee;
@@ -67,7 +77,8 @@ section {
 .navbar__menu ul {
     padding-left: 0;
     margin: 0;
-    text-align: right;
+    display: flex;
+    justify-content: center;
 }
 
 .navbar__menu li {
@@ -86,6 +97,44 @@ section {
     background: #333;
     color: #fff;
     transition: ease 0.3s all;
+}
+
+.navbar__menu .menu__icon {
+    display: none;
+}
+
+@media only screen and (max-width: 768px){
+    .navbar__menu .menu__icon {
+        display: block;
+        padding: 1em;
+        font-weight: bold;
+        text-decoration: none;
+        color: #000;
+        cursor: pointer;
+    }
+    
+    .navbar__menu .menu__icon:hover {
+        background: #ebebeb;
+        color: #fff;
+        transition: ease 0.3s all;
+    }
+
+    .navbar__menu ul {
+        padding-left: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+    
+    .navbar__menu .menu__link {
+       display: none;
+    }
+    
+    .navbar__menu.active .menu__link {
+        display: block;
+    }
+   
 }
 
 /* Header Styles */
@@ -193,17 +242,17 @@ section:nth-of-type(3n + 1) .landing__container::after {
 /* ---- Theme State Rules ---- */
 /* Section Active Styles */
 /* Note: your-active-class class is applied through javascript. You should update the class here and in the index.html to what you set in your javascript file.  */
-section.your-active-class {
-    background: rgb(0, 0, 0);
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 100%);
+section.active {
+    background: rgba(255, 255, 255, 0.438);
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.212) 0%, rgba(255, 255, 255, 0.229) 100%);
 }
 
-section.your-active-class .landing__container::before {
+section.active .landing__container::before {
     opacity: 1;
     animation: rotate 4s linear 0s infinite forwards;
 }
 
-section.your-active-class .landing__container::after {
+section.active .landing__container::after {
     opacity: 1;
     animation: rotate 5s linear 0s infinite forwards reverse;
 }
@@ -220,4 +269,41 @@ section.your-active-class .landing__container::after {
 		           translate(-1em) 
 		           rotate(-360deg);
 	}
+}
+
+
+#scrollTopBtn{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: #ffffff;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: none;
+    opacity: 0.5;
+}
+
+
+.menu__link.active {
+    border-bottom: 3px solid #199f99;
+}
+
+.menu__link {
+    border-bottom: 3px solid transparent;
+}
+
+.hide__header {
+    opacity: 0; 
+    transition: ease 0.3s;
+}
+
+.show__header {
+    opacity: 1; 
+    transition: ease 0.3s;
 }
